@@ -1,0 +1,26 @@
+{
+  "name": "crawl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron.js",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "cron": "^1.2.1",
+    "electron-log": "^2.2.4",
+    "electron-notify": "^0.1.0",
+    "fs": "^0.0.1-security",
+    "iconv-lite": "^0.4.17",
+    "jquery": "^3.2.1",
+    "jquery-extend": "^2.0.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "url": "^0.11.0",
+    "webshot": "^0.18.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

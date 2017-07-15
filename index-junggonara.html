@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>크롤맨</title>
+ 	<meta charset="utf-8">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/css/onsenui.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/css/onsen-css-components.min.css"/>
+	
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/js/onsenui.js"></script>
+    
+ 	<script type="text/javascript">
+ 		// In renderer process (web page).
+ 		
+		const {ipcRenderer} = require('electron');
+		window.$ = window.jQuery = require('jquery');
+		var intervalId = null;
+		var crawl_cnt= 0 
+				
+//console.log($('#second').val())
+/*
+	
+
+*/
+		/*
+		console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+		
+		ipcRenderer.on('asynchronous-reply', (event, arg) => {
+		  console.log(arg) // prints "pong"
+		})
+
+		ipcRenderer.send('asynchronous-message', 'ping');
+		*/
+
+
+
+		ipcRenderer.on('crawl-reply', (e, arg) => {
+
+			console.log(arg) // prints "pong"
+
+			var title = arg[1];
+			var num = arg[2];
+
+
+			var key1 = $('#key1').val();
+			var key2 = $('#key2').val();
+			//var second = $('#second').val();
+			var alarm = $('#alarm').is(':checked');
+
+
+			console.log(title.indexOf(key1));
+			console.log(title)
+			console.log('key2 : ' + key2)
+
+			console.log(title >= key2)
+
+			if( title.indexOf(key1) > -1 && num >= key2 ) {
+				console.log('alarm : ' + alarm)
+				if( alarm ) {
+					$.playSound('alarm.wav');	
+				}
+				
+			}
+			
+			$('#crawl_num').html(arg[2]);
+			$('#crawl_data').html(arg[1]);
+		})
+
+		//ipcRenderer.send('crawl-message', 'crawl');
+
+		$('document').ready(function(){
+
+
+//console.log( $('#second').val() )
+			$('#btn01').click(function(){
+
+				var url = $('#url').val();
+				var key1 = $('#key1').val();
+				var key2 = $('#key2').val();
+
+				//console.log(url, key1, key2)
+				ipcRenderer.send('crawl-message', url, key1, key2);
+			});
+
+			$('#cronBtn').click(function(){
+				if(intervalId){
+
+					
+					//console.log('222');
+					clearInterval(intervalId);
+					intervalId = null;
+					$('#cronBtn').html('연속조회 시작');
+
+					crawl_cnt = 0;
+					$('#crawl_cnt').html( crawl_cnt );
+
+				} else {
+					//console.log(  );
+
+					$('#cronBtn').html('조회 ing..');
+					$('#btn01').click();
+					
+					crawl_cnt =1
+					$('#crawl_cnt').html( crawl_cnt );
+					
+					intervalId = setInterval(function(){
+						$('#btn01').click();
+
+						crawl_cnt++;
+						$('#crawl_cnt').html( crawl_cnt );
+					
+					}, $('#second').val() );
+				
+				}
+			})
+			//$.playSound('alarm.wav');
+
+
+		})
+
+ 	</script>
+
+    <script src="jquery.playSound.js"></script>
+ 	
+ </head>
+ <body>
+ <!--
+ 	<h1>크롤맨</h1>
+ 	<button id="btn01">버튼</button>
+ 	<button id="btn02">버튼2</button>
+ 	<div id="data"></div>
+-->
+<ons-tabbar>
+  <ons-tab label="데이터 알람" page="tab1.html" active>
+  </ons-tab>
+  <ons-tab label="설정" page="tab2.html">
+  </ons-tab>
+  <ons-tab label="소개" page="tab3.html">
+  </ons-tab>
+</ons-tabbar>
+
+<ons-template id="tab1.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">크롤맨 for 중고나라</div>
+    </ons-toolbar>
+	<p style="text-align: center;">
+      설정에 맞는 검색어를 찾을 경우 알람이 있습니다.<br/>
+      검색이 많을 경우, 30분동안 카페 조회 안될 수 있습니다.
+    </p>
+    <p style="text-align: center">
+    	<button class="button" id="btn01">조회 한번하기</button> 
+  	</p>
+  	<p style="text-align: center">
+    	<button class="button button--material" id="cronBtn">연속조회 시작</button> 
+  	</p>
+    <div style='margin: 0 auto; text-align: center'>
+        조회횟수 : <span id="crawl_cnt">0</span>
+        <br/>
+		번호 : <span id="crawl_num"></span>
+		<br/>
+		타이틀 : <span id="crawl_data"></span>
+		
+	</div>
+
+
+  </ons-page>
+</ons-template>
+
+<ons-template id="tab2.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">크롤맨 for 중고나라</div>
+    </ons-toolbar>
+
+    <div style='margin: 0 auto; text-align: center'>
+		<p>중고나라 게시판 url</p>
+		<input id="url"  type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="http://cafe.naver.com/ArticleList.nhn?search.clubid=10050146&search.menuid=334&search.boardtype=L">
+		<p>조건 1 : 검색어</p>
+		<input id="key1" type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="맥북">
+		<p>조건 2 : 게시물 번호 이후로 올라온 게시물을 조회</p>
+		<input id="key2" type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="379902724"">
+
+		<p>해당 조건이 맞을경우에 알람 설정</p>
+		<label class="switch">
+        <input id="alarm" type="checkbox" class="switch__input" checked>
+        <div class="switch__toggle">
+          <div class="switch__handle"></div>
+        </div>
+        </label>
+      	
+      	<p>자동조회주기 : 초단위</p>
+		<select id="second" class="select-input">
+		  <option value="10000" selected>10초</option>
+		  <option value="30000">30초</option>
+		  <option value="60000">60초</option>
+		</select>
+
+	</div>
+
+    
+  </ons-page>
+</ons-template>
+<ons-template id="tab3.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">크롤맨 for 중고나라</div>
+    </ons-toolbar>
+
+    <div style='margin: 0 auto; text-align: center'>
+		<p>중고나라 게시판에 원하는 물품이 올라왔을 때, 알림을 주는 APP 입니다.</p>
+		<br/>
+		<p>문의사항 email : kwonkki83@gmail.com</p>
+	</div>
+
+	<div style='margin: 0 auto; text-align: center'>
+		<p>개발자에게 힘이 될 수 있게, 커피한잔 사주시면 감사하겠씁니다^^</p>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_new">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="T8LWTUJJUK53N">
+		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/ko_KR/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	</div>
+
+    
+  </ons-page>
+</ons-template>
+ </body>
+ </html>

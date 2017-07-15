@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+      <title>OnsenUI Tutorial</title>
+
+      
+
+      <!-- Required libs -->
+      <script src="http://tutorial.onsen.io/?framework=vanilla&amp;category=reference&amp;module=modal"></script>
+      
+  <script src="https://unpkg.com/onsenui/js/onsenui.js"></script><meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+      <!-- Autostyling -->
+      <script>
+        ons.platform.select('ios');
+      </script>
+
+      <!-- App -->
+      <script type="text/javascript">
+        
+          function showModal() {
+  var modal = document.querySelector('ons-modal');
+  modal.show();
+  setTimeout(function() {
+    modal.hide();
+  }, 2000);
+}
+        
+      </script>
+
+      <!-- Stylesheet -->
+      
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,500,400italic,500italic,700,700italic" rel="stylesheet" type="text/css">
+    </head>
+
+    <body data-device-back-button-handler-id="1" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+      <ons-page class="page"><ons-toolbar class="toolbar"><div class="center toolbar__center toolbar__title">Modal</div></ons-toolbar><div class="page__background"></div><div class="page__content">
+  
+
+  <p style="text-align: center">
+    <ons-button onclick="showModal()" class="button">Show modal</ons-button>
+  </p>
+</div></ons-page>
+
+<ons-modal direction="up" class="modal" style="display: none; z-index: 10001;" data-device-back-button-handler-id="0"><div class="modal__content">
+  <div style="text-align: center">
+    <p>
+      <ons-icon icon="md-spinner" size="28px" spin="" class="ons-icon zmdi zmdi-spinner" style="font-size: 28px;"></ons-icon> Loading...
+    </p>
+  </div>
+</div></ons-modal>
+    
+    
+  </body></html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://tutorial.onsen.io/?framework=vanilla&category=reference&module=modal -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn how to create awesome looking hybrid mobile apps with Onsen UI and AngularJS, Angular 2, React or Vanilla JS in this interactive tutorial.">
+  <title>Onsen UI Tutorial</title>
+
+
+  <script src="./Onsen UI Tutorial_files/platform.min.js"></script>
+  <script>
+    if ((/^(ios|android)/i).test(platform.os.family) && screen.width <= 699) {
+      location.href = location.pathname.replace('index.html', '') + 'tabs.html' + location.search;
+    }
+  </script>
+
+  <link rel="canonical" href="https://tutorial.onsen.io/">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/split.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/common.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/header.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/dropdown.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/default.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/dark-skin.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/chrome.css">
+  <link rel="stylesheet" href="./Onsen UI Tutorial_files/monokai.css">
+
+  <script defer="" src="./Onsen UI Tutorial_files/emmet.min.js"></script>
+  <script defer="" type="text/javascript" src="./Onsen UI Tutorial_files/split.min.js"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/highlight.min.js"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/marked.min.js"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/ext-emmet.js"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+  <script defer="" src="./Onsen UI Tutorial_files/srcdoc-polyfill.min.js"></script>
+
+  <script src="./Onsen UI Tutorial_files/app.js"></script>
+  <script src="./Onsen UI Tutorial_files/util.js"></script>
+  <script src="./Onsen UI Tutorial_files/config.js"></script>
+  <script src="./Onsen UI Tutorial_files/setup.js"></script>
+  <script src="./Onsen UI Tutorial_files/services.js"></script>
+  <script src="./Onsen UI Tutorial_files/listeners.js"></script>
+  <script src="./Onsen UI Tutorial_files/modules.js"></script>
+
+<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style>.ace_snippet-marker {    -moz-box-sizing: border-box;    box-sizing: border-box;    background: rgba(194, 193, 208, 0.09);    border: 1px dotted rgba(211, 208, 235, 0.62);    position: absolute;}</style><style>.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {    background-color: #CAD6FA;    z-index: 1;}.ace_editor.ace_autocomplete .ace_line-hover {    border: 1px solid #abbffe;    margin-top: -1px;    background: rgba(233,233,253,0.4);}.ace_editor.ace_autocomplete .ace_line-hover {    position: absolute;    z-index: 2;}.ace_editor.ace_autocomplete .ace_scroller {   background: none;   border: none;   box-shadow: none;}.ace_rightAlignedText {    color: gray;    display: inline-block;    position: absolute;    right: 4px;    text-align: right;    z-index: -1;}.ace_editor.ace_autocomplete .ace_completion-highlight{    color: #000;    text-shadow: 0 0 0.01em;}.ace_editor.ace_autocomplete {    width: 280px;    z-index: 200000;    background: #fbfbfb;    color: #444;    border: 1px lightgray solid;    position: fixed;    box-shadow: 2px 3px 5px rgba(0,0,0,.2);    line-height: 1.4;}</style><script src="./Onsen UI Tutorial_files/theme-chrome.js"></script><script src="./Onsen UI Tutorial_files/mode-html.js"></script><script src="./Onsen UI Tutorial_files/text.js"></script><script src="./Onsen UI Tutorial_files/mode-javascript.js"></script><style id="ace-chrome">.ace-chrome .ace_gutter {background: #ebebeb;color: #333;overflow : hidden;}.ace-chrome .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-chrome {background-color: #FFFFFF;color: black;}.ace-chrome .ace_cursor {color: black;}.ace-chrome .ace_invisible {color: rgb(191, 191, 191);}.ace-chrome .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-chrome .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-chrome .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-chrome .ace_invalid {background-color: rgb(153, 0, 0);color: white;}.ace-chrome .ace_fold {}.ace-chrome .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-chrome .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-chrome .ace_support.ace_type,.ace-chrome .ace_support.ace_class.ace-chrome .ace_support.ace_other {color: rgb(109, 121, 222);}.ace-chrome .ace_variable.ace_parameter {font-style:italic;color:#FD971F;}.ace-chrome .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-chrome .ace_comment {color: #236e24;}.ace-chrome .ace_comment.ace_doc {color: #236e24;}.ace-chrome .ace_comment.ace_doc.ace_tag {color: #236e24;}.ace-chrome .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-chrome .ace_variable {color: rgb(49, 132, 149);}.ace-chrome .ace_xml-pe {color: rgb(104, 104, 91);}.ace-chrome .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-chrome .ace_heading {color: rgb(12, 7, 255);}.ace-chrome .ace_list {color:rgb(185, 6, 144);}.ace-chrome .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-chrome .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-chrome .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-chrome .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-chrome .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-chrome .ace_gutter-active-line {background-color : #dcdcdc;}.ace-chrome .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-chrome .ace_storage,.ace-chrome .ace_keyword,.ace-chrome .ace_meta.ace_tag {color: rgb(147, 15, 128);}.ace-chrome .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-chrome .ace_string {color: #1A1AA6;}.ace-chrome .ace_entity.ace_other.ace_attribute-name {color: #994409;}.ace-chrome .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-chrome */</style><script src="./Onsen UI Tutorial_files/javascript.js"></script><script src="./Onsen UI Tutorial_files/html.js"></script></head>
+
+<body class="full">
+
+<!--<base target="_blank">--><base href="." target="_blank">
+
+<header>
+  <div id="h1" class="design-2016">
+    <div id="monaca-bar">
+      <div class="wrapper">
+        <ul>
+          <li class="dropdown">
+            <a href="https://monaca.io/">Monaca Toolkit</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <nav id="h2" class="design-2016">
+    <div class="title">
+      <a href="https://onsen.io/"><span class="logo"></span></a><a href="http://tutorial.onsen.io/" target="_self"><span class="subtitle"><span>Interactive</span> <span>Tutorial</span></span></a>
+    </div>
+    <ul>
+      <li class="dropdown">
+        <a href="https://onsen.io/getting-started.html">Getting Started</a>
+      </li>
+      <li class="dropdown">
+        <a href="https://onsen.io/v2/docs/js.html">Docs</a>
+      </li>
+      <li class="dropdown">
+        <a href="https://community.onsen.io/">Community</a>
+      </li>
+      <li>
+        <a href="https://onsen.io/blog">Blog</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="h3">
+    <div id="toolbar">
+      <button id="modify-button" class="toolbar-button tooltip" tooltip="Modify the source of this tutorial"><span class="icon"></span><span class="label">Improve this</span></button>
+      <!--<button id="download-button" class="toolbar-button tooltip" tooltip="Generate Cordova project based on this sample"><span></span>Download</button>-->
+      <form id="codepen-form" action="https://codepen.io/pen/define" method="POST" target="_blank">
+        <input type="hidden" name="data" id="codepen-data">
+        <button id="codepen-button" class="toolbar-button tooltip" tooltip="Export this sample to Codepen"><span class="icon"></span><span class="label">Export to Codepen</span></button>
+      </form>
+      <button id="issue-button" class="toolbar-button tooltip" tooltip="Report an issue on GitHub based on this code"><span class="icon"></span><span class="label">Report an issue</span></button>
+    </div>
+
+    <!-- menu - dropdown - frameworks - tuts -->
+    <label id="modules">
+      <div class="select">
+        <span class="select-thumbnail vanilla-thumbnail"></span>
+        <span class="select-item">modal</span>
+        <span class="select-arrow"></span>
+      </div>
+
+      <input type="checkbox">
+
+      <div class="menu">
+        <div class="menu-mask"></div>
+
+        <div class="menu-container">
+          <label class="menu-search">
+            <input id="search-input" type="search" placeholder="Filter by space-separated keywords (e.g. page push)" autocomplete="off">
+          </label>
+
+          <ul class="menu-list">
+            <li class="framework-item">
+              <input type="radio" id="r-vanilla" name="framework" checked="">
+              <label for="r-vanilla" framework="vanilla">
+                <div class="framework-logo"></div>
+              </label>
+              <ul class="module-list"><li class="category-item">
+          <input type="checkbox" id="c-vanilla-reference" checked="">
+          <label for="c-vanilla-reference" category="reference"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-page">
+            <label for="r-vanilla-reference-page" module="page" desc="creating a page" keywords="dialog toolbar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-navigator">
+            <label for="r-vanilla-reference-navigator" module="navigator" desc="stack navigation" keywords="page animation push pop reset replace toolbar navbar backbutton"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-tabbar">
+            <label for="r-vanilla-reference-tabbar" module="tabbar" desc="using tabs" keywords="page tab bar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-splitter">
+            <label for="r-vanilla-reference-splitter" module="splitter" desc="side menu (splitter)" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-list">
+            <label for="r-vanilla-reference-list" module="list" desc="lists" keywords=" items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-lazy-repeat">
+            <label for="r-vanilla-reference-lazy-repeat" module="lazy-repeat" desc="infinite lists" keywords="items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-pull-hook">
+            <label for="r-vanilla-reference-pull-hook" module="pull-hook" desc="pull to refresh" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-carousel">
+            <label for="r-vanilla-reference-carousel" module="carousel" desc="carousel" keywords="slider"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-dialog">
+            <label for="r-vanilla-reference-dialog" module="dialog" desc="dialogs" keywords="alerts notifications"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-popover">
+            <label for="r-vanilla-reference-popover" module="popover" desc="popover" keywords="dialog menu"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-modal">
+            <label for="r-vanilla-reference-modal" module="modal" desc="modal" keywords="dialog"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-input">
+            <label for="r-vanilla-reference-input" module="input" desc="form input" keywords="form checkbox radio password text"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-switch">
+            <label for="r-vanilla-reference-switch" module="switch" desc="switches" keywords="form toggler checkbox"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-button">
+            <label for="r-vanilla-reference-button" module="button" desc="buttons" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-range">
+            <label for="r-vanilla-reference-range" module="range" desc="range sliders" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-select">
+            <label for="r-vanilla-reference-select" module="select" desc="select input" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-icon">
+            <label for="r-vanilla-reference-icon" module="icon" desc="icons" keywords="icons"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-if">
+            <label for="r-vanilla-reference-if" module="if" desc="conditional element" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-progress">
+            <label for="r-vanilla-reference-progress" module="progress" desc="progress indicators" keywords="bar circle circular material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-fab">
+            <label for="r-vanilla-reference-fab" module="fab" desc="floating action button material" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-speed-dial">
+            <label for="r-vanilla-reference-speed-dial" module="speed-dial" desc="speed dial" keywords="fab floating action button material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-reference-ripple">
+            <label for="r-vanilla-reference-ripple" module="ripple" desc="ripple effect" keywords="material"></label>
+          </li></ul></li><li class="category-item">
+          <input type="checkbox" id="c-vanilla-community_tutorials">
+          <label for="c-vanilla-community_tutorials" category="community tutorials"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-community_tutorials-splitter_navigator">
+            <label for="r-vanilla-community_tutorials-splitter_navigator" module="splitter_navigator" desc="splitter animations with navigator" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vanilla-community_tutorials-passing_data">
+            <label for="r-vanilla-community_tutorials-passing_data" module="passing_data" desc="passing data outside onsen ui" keywords=""></label>
+          </li></ul></li><li class="category-item">
+          <a href="https://onsen.io/v2/docs/js.html">Further Reading</a>
+        </li></ul>
+            </li>
+            <li class="framework-item">
+              <input type="radio" id="r-angular1" name="framework">
+              <label for="r-angular1" framework="angular1">
+                <div class="framework-logo"></div>
+              </label>
+              <ul class="module-list"><li class="category-item">
+          <input type="checkbox" id="c-angular1-getting_started" checked="">
+          <label for="c-angular1-getting_started" category="getting started"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-getting_started-introduction">
+            <label for="r-angular1-getting_started-introduction" module="introduction" desc="introduction" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-getting_started-data_binding">
+            <label for="r-angular1-getting_started-data_binding" module="data binding" desc="data binding" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-getting_started-event_handling">
+            <label for="r-angular1-getting_started-event_handling" module="event handling" desc="event handling" keywords=""></label>
+          </li></ul></li><li class="category-item">
+          <input type="checkbox" id="c-angular1-reference">
+          <label for="c-angular1-reference" category="reference"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-page">
+            <label for="r-angular1-reference-page" module="page" desc="creating a page" keywords="dialog toolbar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-navigator">
+            <label for="r-angular1-reference-navigator" module="navigator" desc="stack navigation" keywords="page animation push pop reset replace toolbar navbar backbutton"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-tabbar">
+            <label for="r-angular1-reference-tabbar" module="tabbar" desc="using tabs" keywords="page tab bar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-splitter">
+            <label for="r-angular1-reference-splitter" module="splitter" desc="side menu (splitter)" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-list">
+            <label for="r-angular1-reference-list" module="list" desc="lists" keywords=" items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-lazy-repeat">
+            <label for="r-angular1-reference-lazy-repeat" module="lazy-repeat" desc="infinite lists" keywords="items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-pull-hook">
+            <label for="r-angular1-reference-pull-hook" module="pull-hook" desc="pull to refresh" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-carousel">
+            <label for="r-angular1-reference-carousel" module="carousel" desc="carousel" keywords="slider"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-dialog">
+            <label for="r-angular1-reference-dialog" module="dialog" desc="dialogs" keywords="alerts notifications"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-popover">
+            <label for="r-angular1-reference-popover" module="popover" desc="popover" keywords="dialog menu"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-modal">
+            <label for="r-angular1-reference-modal" module="modal" desc="modal" keywords="dialog"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-input">
+            <label for="r-angular1-reference-input" module="input" desc="form input" keywords="form checkbox radio password text"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-switch">
+            <label for="r-angular1-reference-switch" module="switch" desc="switches" keywords="form toggler checkbox"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-button">
+            <label for="r-angular1-reference-button" module="button" desc="buttons" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-range">
+            <label for="r-angular1-reference-range" module="range" desc="range sliders" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-icon">
+            <label for="r-angular1-reference-icon" module="icon" desc="icons" keywords="icons"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-if">
+            <label for="r-angular1-reference-if" module="if" desc="conditional element" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-progress">
+            <label for="r-angular1-reference-progress" module="progress" desc="progress indicators" keywords="bar circle circular material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-fab">
+            <label for="r-angular1-reference-fab" module="fab" desc="floating action button material" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-speed-dial">
+            <label for="r-angular1-reference-speed-dial" module="speed-dial" desc="speed dial" keywords="fab floating action button material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular1-reference-ripple">
+            <label for="r-angular1-reference-ripple" module="ripple" desc="ripple effect" keywords="material"></label>
+          </li></ul></li><li class="category-item">
+          <a href="https://onsen.io/v2/docs/angular1.html">Further Reading</a>
+        </li></ul>
+            </li>
+            <li class="framework-item">
+              <input type="radio" id="r-angular2" name="framework">
+              <label for="r-angular2" framework="angular2">
+                <div class="framework-logo"></div>
+              </label>
+              <ul class="module-list"><li class="category-item">
+          <input type="checkbox" id="c-angular2-reference" checked="">
+          <label for="c-angular2-reference" category="reference"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-page">
+            <label for="r-angular2-reference-page" module="page" desc="creating a page" keywords="dialog toolbar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-navigator">
+            <label for="r-angular2-reference-navigator" module="navigator" desc="stack navigation" keywords="page animation push pop reset replace toolbar navbar backbutton"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-tabbar">
+            <label for="r-angular2-reference-tabbar" module="tabbar" desc="using tabs" keywords="page tab bar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-splitter">
+            <label for="r-angular2-reference-splitter" module="splitter" desc="side menu (splitter)" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-list">
+            <label for="r-angular2-reference-list" module="list" desc="lists" keywords=" items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-lazy-repeat">
+            <label for="r-angular2-reference-lazy-repeat" module="lazy-repeat" desc="infinite lists" keywords="items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-pull-hook">
+            <label for="r-angular2-reference-pull-hook" module="pull-hook" desc="pull to refresh" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-carousel">
+            <label for="r-angular2-reference-carousel" module="carousel" desc="carousel" keywords="slider"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-dialog">
+            <label for="r-angular2-reference-dialog" module="dialog" desc="dialogs" keywords="alerts notifications"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-popover">
+            <label for="r-angular2-reference-popover" module="popover" desc="popover" keywords="dialog menu"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-modal">
+            <label for="r-angular2-reference-modal" module="modal" desc="modal" keywords="dialog"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-input">
+            <label for="r-angular2-reference-input" module="input" desc="form input" keywords="form checkbox radio password text"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-switch">
+            <label for="r-angular2-reference-switch" module="switch" desc="switches" keywords="form toggler checkbox"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-button">
+            <label for="r-angular2-reference-button" module="button" desc="buttons" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-range">
+            <label for="r-angular2-reference-range" module="range" desc="range sliders" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-select">
+            <label for="r-angular2-reference-select" module="select" desc="select input" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-icon">
+            <label for="r-angular2-reference-icon" module="icon" desc="icons" keywords="icons"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-progress">
+            <label for="r-angular2-reference-progress" module="progress" desc="progress indicators" keywords="bar circle circular material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-fab">
+            <label for="r-angular2-reference-fab" module="fab" desc="floating action button material" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-speed-dial">
+            <label for="r-angular2-reference-speed-dial" module="speed-dial" desc="speed dial" keywords="fab floating action button material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-angular2-reference-ripple">
+            <label for="r-angular2-reference-ripple" module="ripple" desc="ripple effect" keywords="material"></label>
+          </li></ul></li><li class="category-item">
+          <a href="https://onsen.io/v2/docs/angular2.html">Further Reading</a>
+        </li></ul>
+            </li>
+            <li class="framework-item">
+              <input type="radio" id="r-react" name="framework">
+              <label for="r-react" framework="react">
+                <div class="framework-logo"></div>
+              </label>
+              <ul class="module-list"><li class="category-item">
+          <input type="checkbox" id="c-react-getting_started" checked="">
+          <label for="c-react-getting_started" category="getting started"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-getting_started-using_the_components">
+            <label for="r-react-getting_started-using_the_components" module="using the components" desc="using the components" keywords=""></label>
+          </li></ul></li><li class="category-item">
+          <input type="checkbox" id="c-react-reference">
+          <label for="c-react-reference" category="reference"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-page">
+            <label for="r-react-reference-page" module="page" desc="creating a page" keywords="dialog toolbar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-navigator">
+            <label for="r-react-reference-navigator" module="navigator" desc="stack navigation" keywords="page animation push pop reset replace toolbar navbar backbutton"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-tabbar">
+            <label for="r-react-reference-tabbar" module="tabbar" desc="using tabs" keywords="page tab bar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-splitter">
+            <label for="r-react-reference-splitter" module="splitter" desc="side menu (splitter)" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-list">
+            <label for="r-react-reference-list" module="list" desc="lists" keywords=" items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-lazy-list">
+            <label for="r-react-reference-lazy-list" module="lazy-list" desc="infinite lists" keywords="items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-pull-hook">
+            <label for="r-react-reference-pull-hook" module="pull-hook" desc="pull to refresh" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-carousel">
+            <label for="r-react-reference-carousel" module="carousel" desc="carousel" keywords="slider"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-dialog">
+            <label for="r-react-reference-dialog" module="dialog" desc="dialogs" keywords="alerts notifications"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-popover">
+            <label for="r-react-reference-popover" module="popover" desc="popover" keywords="dialog menu"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-modal">
+            <label for="r-react-reference-modal" module="modal" desc="modal" keywords="dialog"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-input">
+            <label for="r-react-reference-input" module="input" desc="form input" keywords="form checkbox radio password text"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-switch">
+            <label for="r-react-reference-switch" module="switch" desc="switches" keywords="form toggler checkbox"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-button">
+            <label for="r-react-reference-button" module="button" desc="buttons" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-range">
+            <label for="r-react-reference-range" module="range" desc="range sliders" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-icon">
+            <label for="r-react-reference-icon" module="icon" desc="icons" keywords="icons"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-progress">
+            <label for="r-react-reference-progress" module="progress" desc="progress indicators" keywords="bar circle circular material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-fab">
+            <label for="r-react-reference-fab" module="fab" desc="floating action button material" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-speed-dial">
+            <label for="r-react-reference-speed-dial" module="speed-dial" desc="speed dial" keywords="fab floating action button material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-react-reference-ripple">
+            <label for="r-react-reference-ripple" module="ripple" desc="ripple effect" keywords="material"></label>
+          </li></ul></li><li class="category-item">
+          <a href="https://onsen.io/v2/docs/react.html">Further Reading</a>
+        </li></ul>
+            </li>
+            <li class="framework-item">
+              <input type="radio" id="r-vue" name="framework">
+              <label for="r-vue" framework="vue">
+                <div class="framework-logo"></div>
+              </label>
+              <ul class="module-list"><li class="category-item">
+          <input type="checkbox" id="c-vue-reference" checked="">
+          <label for="c-vue-reference" category="reference"></label>
+        <ul><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-page">
+            <label for="r-vue-reference-page" module="page" desc="creating a page" keywords="dialog toolbar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-navigator">
+            <label for="r-vue-reference-navigator" module="navigator" desc="stack navigation" keywords="page animation push pop reset replace toolbar navbar backbutton"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-tabbar">
+            <label for="r-vue-reference-tabbar" module="tabbar" desc="using tabs" keywords="page tab bar"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-splitter">
+            <label for="r-vue-reference-splitter" module="splitter" desc="side menu (splitter)" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-list">
+            <label for="r-vue-reference-list" module="list" desc="lists" keywords=" items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-lazy-repeat">
+            <label for="r-vue-reference-lazy-repeat" module="lazy-repeat" desc="infinite lists" keywords="items"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-pull-hook">
+            <label for="r-vue-reference-pull-hook" module="pull-hook" desc="pull to refresh" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-carousel">
+            <label for="r-vue-reference-carousel" module="carousel" desc="carousel" keywords="slider"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-dialog">
+            <label for="r-vue-reference-dialog" module="dialog" desc="dialogs" keywords="alerts notifications"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-popover">
+            <label for="r-vue-reference-popover" module="popover" desc="popover" keywords="dialog menu"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-modal">
+            <label for="r-vue-reference-modal" module="modal" desc="modal" keywords="dialog"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-input">
+            <label for="r-vue-reference-input" module="input" desc="form input" keywords="form checkbox radio password text"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-switch">
+            <label for="r-vue-reference-switch" module="switch" desc="switches" keywords="form toggler checkbox"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-button">
+            <label for="r-vue-reference-button" module="button" desc="buttons" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-range">
+            <label for="r-vue-reference-range" module="range" desc="range sliders" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-select">
+            <label for="r-vue-reference-select" module="select" desc="select input" keywords="form"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-icon">
+            <label for="r-vue-reference-icon" module="icon" desc="icons" keywords="icons"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-progress">
+            <label for="r-vue-reference-progress" module="progress" desc="progress indicators" keywords="bar circle circular material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-fab">
+            <label for="r-vue-reference-fab" module="fab" desc="floating action button material" keywords=""></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-speed-dial">
+            <label for="r-vue-reference-speed-dial" module="speed-dial" desc="speed dial" keywords="fab floating action button material"></label>
+          </li><li class="module-item">
+            <input type="radio" name="select-item" id="r-vue-reference-ripple">
+            <label for="r-vue-reference-ripple" module="ripple" desc="ripple effect" keywords="material"></label>
+          </li></ul></li><li class="category-item">
+          <a href="https://onsen.io/v2/docs/vue.html">Further Reading</a>
+        </li></ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </label>
+  </div>
+</header>
+
+<div id="container">
+  <div id="leftPane" class="split split-horizontal" style="width: calc(28.12% - 7.5px);">
+    <div id="leftTopPane" class="split content" style="height: calc(40% - 7.5px);">
+      <div id="tutorial-content" class="frame"><h2 id="modal">Modal</h2>
+<p>Modals are used to display some information on top of the app and take the focus. It forbids user interaction with the background.</p>
+<p>Simply add the modal tags together with the page.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">ons-page</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">ons-page</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">ons-modal</span>&gt;</span>
+  This is a modal!
+<span class="hljs-tag">&lt;/<span class="hljs-name">ons-modal</span>&gt;</span>
+</code></pre><p>Use <code>show</code>, <code>hide</code> and <code>toggle</code> methods to control it.</p>
+<br><br></div>
+      <div id="tutorial-pages">
+        <span id="pages-previous">◀</span>
+        <span id="pages-current">1</span>
+        /
+        <span id="pages-total">1</span>
+        <span id="pages-next">▶</span>
+
+      </div>
+    </div>
+    <div class="gutter gutter-vertical" style="height: 15px;"></div><div id="leftBottomPane" class="split content" style="height: calc(60% - 7.5px);">
+      <div id="output" class="frame">
+        <div class="preview-toolbar">
+          <div id="run" class="custom-button"><span><span>▶</span> Run</span></div>
+          <span id="styling">
+            <label class="custom-button">
+              <input type="radio" name="styling" checked="">
+              <span platform="ios"><span class="styling-icon icon-ios"></span><span class="styling-label">iOS View</span></span>
+            </label>
+            <label class="custom-button">
+              <input type="radio" name="styling">
+              <span platform="android"><span class="styling-icon icon-android"></span><span class="styling-label">Android View</span></span>
+            </label>
+          </span>
+        </div>
+
+        <iframe frameborder="0" scrolling="no" src="./Onsen UI Tutorial_files/saved_resource.html"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="gutter gutter-horizontal" style="width: 15px;"></div><div id="rightPane" class="split split-horizontal" style="width: calc(71.8788% - 7.5px);">
+    <div id="rightTopPane" class="split content" style="height: calc(50% - 7.5px);">
+      <div class="editor-title">HTML</div>
+      <div id="html-input" class="frame input ace_editor ace-chrome" style="line-height: 1.3; font-size: 10pt; font-family: hermit;" draggable="false"><textarea class="ace_text-input" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="opacity: 0; height: 17px; width: 8.22469px; left: 152.696px; top: 209px;"></textarea><div class="ace_gutter"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="margin-top: -12px; height: 260px; width: 50px;"><div class="ace_gutter-cell " style="height: 17px;">4</div><div class="ace_gutter-cell " style="height: 17px;">5</div><div class="ace_gutter-cell " style="height: 17px;">6<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">7</div><div class="ace_gutter-cell " style="height: 17px;">8</div><div class="ace_gutter-cell " style="height: 17px;">9</div><div class="ace_gutter-cell " style="height: 17px;">10</div><div class="ace_gutter-cell " style="height: 17px;">11<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">12<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">13<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">14</div><div class="ace_gutter-cell " style="height: 17px;">15</div><div class="ace_gutter-cell " style="height: 17px;">16</div><div class="ace_gutter-cell " style="height: 17px;">17</div></div><div class="ace_gutter-active-line" style="top: 209px; height: 17px;"></div></div><div class="ace_scroller" style="left: 50px; right: 4px; bottom: 0px;"><div class="ace_content" style="margin-top: -12px; width: 834px; height: 260px; margin-left: 0px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 661.975px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_selection ace_br1 ace_start" style="height:17px;right:0;top:102px;left:4px;"></div><div class="ace_selection ace_br12" style="height:17px;width:98.69624999999999px;top:221px;left:4px;"></div><div class="ace_selection" style="height:102px;right:0;top:119px;left:4px;"></div></div><div class="ace_layer ace_text-layer" style="padding: 0px 4px;"><div class="ace_line" style="height:17px"><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-toolbar</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"></div><div class="ace_line" style="height:17px"><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">p</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"text-align: center"</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_indent-guide">  </span><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-button</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">onclick</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"showModal()"</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span><span class="ace_text ace_xml">Show modal</span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-button</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">p</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-page</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"></div><div class="ace_line" style="height:17px"><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-modal</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">direction</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"up"</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">div</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"text-align: center"</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_indent-guide">  </span><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">p</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_indent-guide">  </span><span class="ace_indent-guide">  </span><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-icon</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">icon</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"md-spinner"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">size</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"28px"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">spin</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-icon</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span><span class="ace_text ace_xml"> Loading...</span></div><div class="ace_line" style="height:17px"><span class="ace_indent-guide">  </span><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">p</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_text ace_xml">  </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">div</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div><div class="ace_line" style="height:17px"><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">ons-modal</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="left: 102.696px; top: 221px; width: 8.22469px; height: 17px;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 9px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 9px; height: 289px;"></div></div><div class="ace_scrollbar ace_scrollbar-h" style="height: 9px; left: 50px; right: 4px; display: none;"><div class="ace_scrollbar-inner" style="height: 9px; width: 834px;"></div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;"></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div>
+    </div>
+    <div class="gutter gutter-vertical" style="height: 15px;"></div><div id="rightBottomPane" class="split content" style="height: calc(50% - 7.5px);">
+      <div class="editor-title">JS</div>
+      <div id="js-input" class="frame input ace_editor ace-chrome" style="line-height: 1.3; font-size: 10pt; font-family: hermit;" draggable="false"><textarea class="ace_text-input" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="opacity: 0; height: 17px; width: 8.22469px; left: 185.82px; top: 51px;"></textarea><div class="ace_gutter"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="margin-top: 0px; height: 260px; width: 42px;"><div class="ace_gutter-cell " style="height: 17px;">1<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">2</div><div class="ace_gutter-cell " style="height: 17px;">3</div><div class="ace_gutter-cell " style="height: 17px;">4<span class="ace_fold-widget ace_start ace_open" style="height: 17px;"></span></div><div class="ace_gutter-cell " style="height: 17px;">5</div><div class="ace_gutter-cell " style="height: 17px;">6</div><div class="ace_gutter-cell " style="height: 17px;">7</div></div><div class="ace_gutter-active-line" style="top: 51px; height: 17px;"></div></div><div class="ace_scroller" style="left: 42px; right: 0px; bottom: 0px;"><div class="ace_content" style="margin-top: 0px; width: 846px; height: 260px; margin-left: 0px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 661.975px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_selection ace_br1 ace_start" style="height:17px;right:0;top:51px;left:143.8196875px;"></div><div class="ace_selection ace_br12" style="height:17px;width:8.2246875px;top:102px;left:4px;"></div><div class="ace_selection ace_br1" style="height:34px;right:0;top:68px;left:4px;"></div></div><div class="ace_layer ace_text-layer" style="padding: 0px 4px;"><div class="ace_line" style="height:17px"><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">showModal</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:17px">  <span class="ace_storage ace_type">var</span> <span class="ace_identifier">modal</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_variable ace_language">document</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">querySelector</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'ons-modal'</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div><div class="ace_line" style="height:17px">  <span class="ace_identifier">modal</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">show</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div><div class="ace_line" style="height:17px">  <span class="ace_identifier">setTimeout</span><span class="ace_paren ace_lparen">(</span><span class="ace_storage ace_type">function</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:17px"><span class="ace_indent-guide">  </span>  <span class="ace_identifier">modal</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">hide</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div><div class="ace_line" style="height:17px">  <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">2000</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div><div class="ace_line" style="height:17px"><span class="ace_paren ace_rparen">}</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="left: 143.82px; top: 51px; width: 8.22469px; height: 17px;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 9px; bottom: 0px; display: none;"><div class="ace_scrollbar-inner" style="width: 9px; height: 119px;"></div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 9px; left: 42px; right: 0px;"><div class="ace_scrollbar-inner" style="height: 9px; width: 838px;"></div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;"></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-container">
+  <div id="modal-mask"></div>
+  <div id="modal">
+    <div id="modal-title">Generate Cordova Project</div>
+    <div id="modal-confirm" class="modal-body">
+      <div id="modal-content">Are you sure you want to generate a Cordova Project based on this sample and download it?</div>
+      <div id="modal-footer"><button id="modal-generate-button" autofocus="">Generate</button> <button id="modal-cancel-button">Cancel</button></div>
+    </div>
+    <div id="modal-generating" class="modal-body">
+      <div class="cssload-loader"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="dummy-loader" style="visibility: hidden; width: 0; height: 0;">
+  <div class="vanilla-black"></div>
+  <div class="vanilla-blue"></div>
+  <div class="angular1-black"></div>
+  <div class="angular1-blue"></div>
+  <div class="angular2-black"></div>
+  <div class="angular2-blue"></div>
+  <div class="react-black"></div>
+  <div class="react-blue"></div>
+  <div class="vue-black"></div>
+  <div class="vue-blue"></div>
+  <div class="vanilla-thumbnail"></div>
+  <div class="angular1-thumbnail"></div>
+  <div class="angular2-thumbnail"></div>
+  <div class="react-thumbnail"></div>
+  <div class="vue-thumbnail"></div>
+</div>
+
+
+
+
+</body></html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>주식데이터 크롤 알람이</title>
+ 	<meta charset="utf-8">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/css/onsenui.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/css/onsen-css-components.min.css"/>
+	
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.2.6/js/onsenui.js"></script>
+    
+ 	<script type="text/javascript">
+ 		// In renderer process (web page).
+ 		
+		const {ipcRenderer} = require('electron');
+		window.$ = window.jQuery = require('jquery');
+		var intervalId = null;
+		var crawl_cnt= 0 
+			
+
+		ipcRenderer.on('crawl-reply', (e, arg) => {
+
+			console.log(arg);
+
+
+			var key1 = $('#key1').val();
+			var key2 = $('#key2').val();
+			//var second = $('#second').val();
+			var alarm = $('#alarm').is(':checked');
+
+
+			/* 조건 
+			if( title.indexOf(key1) > -1 && num >= key2 ) {
+				console.log('alarm : ' + alarm)
+				if( alarm ) {
+					$.playSound('alarm.wav');	
+				}
+				
+			}*/
+			
+			$('#arg1').html(arg[1]);
+			$('#arg2').html(arg[2]);
+		})
+
+		//ipcRenderer.send('crawl-message', 'crawl');
+
+		$('document').ready(function(){
+
+
+			$('#btn01').click(function(){
+
+				var url = $('#url').val();
+				var key1 = $('#key1').val();
+				var key2 = $('#key2').val();
+
+				//console.log(url, key1, key2)
+				ipcRenderer.send('crawl-message', url, key1, key2);
+			});
+
+			$('#cronBtn').click(function(){
+				if(intervalId){
+
+					
+					//console.log('222');
+					clearInterval(intervalId);
+					intervalId = null;
+					$('#cronBtn').html('연속 크롤링 시작연속');
+
+					crawl_cnt = 0;
+					$('#crawl_cnt').html( crawl_cnt );
+
+				} else {
+					//console.log(  );
+
+					$('#cronBtn').html('조회 ing..');
+					$('#btn01').click();
+					
+					crawl_cnt =1
+					$('#crawl_cnt').html( crawl_cnt );
+					
+					intervalId = setInterval(function(){
+						$('#btn01').click();
+
+						crawl_cnt++;
+						$('#crawl_cnt').html( crawl_cnt );
+					
+					}, $('#second').val() );
+				
+				}
+			})
+			//$.playSound('alarm.wav');
+
+
+		})
+
+ 	</script>
+
+    <script src="jquery.playSound.js"></script>
+ 	
+ </head>
+ <body>
+ <!--
+ 	<h1>크롤맨</h1>
+ 	<button id="btn01">버튼</button>
+ 	<button id="btn02">버튼2</button>
+ 	<div id="data"></div>
+-->
+<ons-tabbar>
+  <ons-tab label="데이터 알람" page="tab1.html" active>
+  </ons-tab>
+  <ons-tab label="설정" page="tab2.html">
+  </ons-tab>
+  <ons-tab label="프로그램소개" page="tab3.html">
+  </ons-tab>
+</ons-tabbar>
+
+<ons-template id="tab1.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">주식데이터 크롤 알람이</div>
+    </ons-toolbar>
+	<p style="text-align: center;">
+      
+    </p>
+    
+    <p style="text-align: center">
+    	<button class="button" id="btn01">크롤링</button> 
+  	</p>
+
+ 	<p style="text-align: center">
+    	<button class="button button--material" id="cronBtn">연속 크롤링 시작연속</button> 
+  	</p>
+  	
+    <div style='margin: 0 auto; text-align: center'>
+        조회횟수 : <span id="crawl_cnt">0</span>
+        <br/>
+		주식 이름 : <span id="arg1"></span>
+		<br/>
+		주식 현재가 : <span id="arg2"></span>
+		
+	</div>
+
+
+  </ons-page>
+</ons-template>
+
+<ons-template id="tab2.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">주식데이터 크롤 알람이</div>
+    </ons-toolbar>
+
+    <div style='margin: 0 auto; text-align: center'>
+		<p>다음증권 URL을 입력하세요</p>
+		<input id="url"  type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="http://finance.daum.net/item/main.daum?code=005930&nil_profile=vsearch&nil_src=stock">
+		<p>목표 상한가 설정</p>
+		<input id="key1" type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="2400000">
+		<p>목표 하한가 설정</p>
+		<input id="key2" type="text" size="50" class="text-input text-input--underbar" placeholder="입력하세요" value="1000000">
+
+		<p>알람 설정</p>
+		<label class="switch">
+        <input id="alarm" type="checkbox" class="switch__input" checked>
+        <div class="switch__toggle">
+          <div class="switch__handle"></div>
+        </div>
+        </label>
+      	
+      	<p>자동 조회 초 단위</p>
+		<select id="second" class="select-input">
+		  <option value="10000" selected>10초</option>
+		  <option value="30000">30초</option>
+		  <option value="60000">60초</option>
+		</select>
+
+	</div>
+
+    
+  </ons-page>
+</ons-template>
+<ons-template id="tab3.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">주식데이터 크롤 알람이</div>
+    </ons-toolbar>
+
+
+
+	<div style='margin: 0 auto; text-align: center'>
+		<p>주식데이터 크롤 알람이 입니다.</p>
+	</div>
+
+	<div style='margin: 0 auto; text-align: center'>
+		<p>문의사항 email : kwonkki83@gmail.com</p>
+	</div>
+
+    
+  </ons-page>
+</ons-template>
+ </body>
+ </html>
